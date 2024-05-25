@@ -17,8 +17,14 @@ public class Main {
 //        }
 
         System.out.println(listNames.get(2));
+        System.out.println(listNames.remove("raul"));
         listNames.remove("raul");
         System.out.println(listNames);
+        System.out.println(listNames.remove("john"));
+        System.out.println(listNames.set(0, "alex"));
+        System.out.println(listNames);
+        System.out.println(listNames.indexOf("sebi"));
+        System.out.println(listNames.indexOf("bogdan"));
 
     }
 }
