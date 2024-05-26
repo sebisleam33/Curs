@@ -1,42 +1,23 @@
-/*
- * Copyright (c) 2024. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
- * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
- * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
- * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
- * Vestibulum commodo. Ut rhoncus gravida arcu.
- */
-
 package org.example;
 
-import java.util.ArrayList;
-
-class IntWrapper {
-    public int num;
-
-    public IntWrapper(int num) {
-        this.num = num;
-    }
-
-    public int getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
-    }
-}
-
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
 
-        ArrayList<Integer> numbersList = new ArrayList<>();
-        numbersList.add(21);
-        System.out.println(numbersList.get(0));
+        Stack<Integer> numbers = new Stack();
+        numbers.push(25);
+        numbers.push(252);
+        numbers.push(5);
+        numbers.push(2);
+        numbers.push(255);
 
-        ArrayList<IntWrapper> numbersList2 = new ArrayList<>();
-        numbersList2.add(new IntWrapper(55));
-        System.out.println(numbersList2.get(0).getNum());
+        System.out.println(numbers);
+        System.out.println(numbers.isEmpty());
+        System.out.println(numbers.search(252));
+        System.out.println(numbers.pop());
+        numbers.pop();
+        System.out.println(numbers);
 
     }
 }
