@@ -1,23 +1,25 @@
 package org.example;
 
-import java.util.Stack;
+import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
 
-        Stack<Integer> numbers = new Stack();
-        numbers.push(25);
-        numbers.push(252);
-        numbers.push(5);
-        numbers.push(2);
-        numbers.push(255);
+        LinkedList<String> names = new LinkedList<>();
+        names.add("sebi");
+        names.add("andre");
+        names.add("claudu");
+        names.add("debi");
+        names.add("raul");
 
-        System.out.println(numbers);
-        System.out.println(numbers.isEmpty());
-        System.out.println(numbers.search(252));
-        System.out.println(numbers.pop());
-        numbers.pop();
-        System.out.println(numbers);
+        System.out.println(names);
+        System.out.println(names.size());
+        names.add(4, "darius");
+        System.out.println(names);
+        names.set(2, "mike");
+        System.out.println(names);
+        names.remove(0);
+        System.out.println(names);
 
     }
 }
