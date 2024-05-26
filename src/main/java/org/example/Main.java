@@ -1,6 +1,8 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,14 +14,18 @@ public class Main {
         names.add("debi");
         names.add("raul");
 
-        System.out.println(names);
-        System.out.println(names.size());
-        names.add(4, "darius");
-        System.out.println(names);
-        names.set(2, "mike");
-        System.out.println(names);
-        names.remove(0);
-        System.out.println(names);
+        ArrayList<String> list2 = new ArrayList<>();
+        list2.add("Dobrogea");
+        list2.add("Baia Mare");
 
+        new Main().printList(names);
+        new Main().printList(list2);
+
+    }
+    
+    void printList(List<String> list){
+        for (String name : list) {
+            System.out.println(name);
+        }
     }
 }
