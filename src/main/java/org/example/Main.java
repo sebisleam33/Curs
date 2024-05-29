@@ -1,9 +1,6 @@
 package org.example;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 class Data <K extends Integer, V extends String> {
    private K key;
@@ -33,7 +30,18 @@ class Data <K extends Integer, V extends String> {
 }
 public class Main {
     public static void main(String[] args) {
-        Set<Data<Integer, String>> set = new HashSet<>();
+        Comparator<Data<Integer, String>> COMPARE_KEY = new Comparator<Data<Integer, String>>() {
+            @Override
+            public int compare(Data<Integer, String> obj1, Data<Integer, String> obj2) {
+                if(obj1.getKey() < obj2.getKey()){
+                    return -1;
+                }else if (obj1.getKey() > obj2.getKey()){
+                    return 1;
+                }
+                return 0;
+            }
+        };
+        Set<Data<Integer, String>> set = new TreeSet<>(COMPARE_KEY);
         set.add(new Data<>(1, "sebi"));
         set.add(new Data<>(2, "raul"));
         set.add(new Data<>(3, "amalia"));
