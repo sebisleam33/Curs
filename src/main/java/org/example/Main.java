@@ -1,9 +1,11 @@
 package org.example;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
-class Data <K, V> {
+class Data <K extends Integer, V extends String> {
    private K key;
    private V value;
 
@@ -28,16 +30,19 @@ class Data <K, V> {
                 '}';
     }
 
-    public <E, N> void display(E element, N number) {
-        System.out.println("Element: "+element+" Number: "+number);
-    }
 }
 public class Main {
     public static void main(String[] args) {
+        Set<Data<Integer, String>> set = new HashSet<>();
+        set.add(new Data<>(1, "sebi"));
+        set.add(new Data<>(2, "raul"));
+        set.add(new Data<>(3, "amalia"));
+        set.add(new Data<>(4, "patric"));
+        set.add(new Data<>(5, "alex"));
+        set.add(new Data<>(1, "sebi"));
 
-        Data<Integer, String> data = new Data<>(10, "Sebi");
-        System.out.println(data);
-        data.display("Sebastianul", 22500);
-
+        for (Data data: set) {
+            System.out.println(data);
+        }
     }
 }
