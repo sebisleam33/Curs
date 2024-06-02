@@ -1,27 +1,34 @@
 package org.example;
 
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
+
+import static java.lang.Thread.sleep;
+
+class myCounter implements Runnable{
+    private int threadNo;
+    public myCounter(int threadNo){
+        this.threadNo = threadNo;
+    }
+    @Override
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            try {
+                Random random = new Random();
+                sleep(random.nextInt(1000));
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Thread number: "+threadNo +" and iteration number: "+i);
+        }
+    }
+}
+
 
 public class Main {
     public static void main(String[] args) {
-        Queue<Integer> queue = new ArrayBlockingQueue<>(4);
-        try {
-            queue.offer(1);
-            queue.offer(2);
-            queue.offer(3);
-            queue.offer(4);
-            queue.offer(5);
-            System.out.println(queue.offer(6));
-            System.out.println(queue.poll());
-            queue.offer(6);
-        } catch (Exception e) {
-            System.out.println("Wrong");
-        }
-
-        System.out.println(queue.peek());
-        System.out.println(queue.element());
-        System.out.println(queue);
+        Thread thread1 = new Thread(new myCounter(1));
+        Thread thread2 = new Thread(new myCounter(2));
+        thread1.start();
+        thread2.start();
     }
 }
