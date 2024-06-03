@@ -1,37 +1,43 @@
 package org.example;
 
-import java.util.concurrent.CountDownLatch;
-
-class someThread extends Thread {
-    private CountDownLatch latch;
-
-    public someThread(CountDownLatch latch) {
-        this.latch = latch;
-    }
-
-    @Override
-
-    public void run () {
-        System.out.println("Started thread: "+Thread.currentThread().getName());
-        System.out.println("Ended thread: " + Thread.currentThread().getName());
-        System.out.println("**************");
-        latch.countDown();
-    }
-}
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Main {
+    public static int counter = 0;
+    static Lock lock = new ReentrantLock();
     public static void main(String[] args) throws InterruptedException {
-        CountDownLatch latch = new CountDownLatch(4);
-        someThread thread1 = new someThread(latch);
-        someThread thread2 = new someThread(latch);
-        someThread thread3 = new someThread(latch);
-        someThread thread4 = new someThread(latch);
+        Thread thread1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                lock.lock();
+                try {
+                    for (int i = 0; i < 100000; i++) {
+                        Main.counter++;
+                    }
+                }finally {
+                    lock.unlock();
+                }
+            }
+        });
+
+        Thread thread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                lock.lock();
+                try {
+                    for (int i = 0; i < 100000; i++) {
+                        Main.counter++;
+                    }
+                }finally {
+                    lock.unlock();
+                }
+            }
+        });
         thread1.start();
         thread2.start();
-        thread3.start();
-        thread4.start();
-
-        latch.await();
-        System.out.println("Main thread: "+ Thread.currentThread().getName());
+        thread1.join();
+        thread2.join();
+        System.out.println("Counter: "+Main.counter);
     }
 }
