@@ -1,19 +1,15 @@
 package org.example;
 
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter("test.txt", true))){
-            bw.write("Sebastian");
-            bw.newLine();
-            bw.write("Otter");
-            bw.newLine();
-            bw.write("Zeus");
+        try(BufferedReader br = new BufferedReader(new FileReader("test.txt"))){
+            String line;
+            while((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
 
             System.out.println("File operation was successful");
         } catch (IOException e) {
