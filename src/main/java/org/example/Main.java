@@ -1,43 +1,24 @@
 package org.example;
 
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Main {
-    public static int counter = 0;
-    static Lock lock = new ReentrantLock();
-    public static void main(String[] args) throws InterruptedException {
-        Thread thread1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                lock.lock();
-                try {
-                    for (int i = 0; i < 100000; i++) {
-                        Main.counter++;
-                    }
-                }finally {
-                    lock.unlock();
-                }
-            }
-        });
+    public static void main(String[] args) throws IOException {
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter("test.txt", true))){
+            bw.write("Sebastian");
+            bw.newLine();
+            bw.write("Otter");
+            bw.newLine();
+            bw.write("Zeus");
 
-        Thread thread2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                lock.lock();
-                try {
-                    for (int i = 0; i < 100000; i++) {
-                        Main.counter++;
-                    }
-                }finally {
-                    lock.unlock();
-                }
-            }
-        });
-        thread1.start();
-        thread2.start();
-        thread1.join();
-        thread2.join();
-        System.out.println("Counter: "+Main.counter);
+            System.out.println("File operation was successful");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Something went wrong.");
+        }
     }
 }
