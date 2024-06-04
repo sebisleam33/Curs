@@ -6,11 +6,21 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        File file = new File("test.txt");
-        if(file.delete()) {
-            System.out.println("File deleted.");
-        } else {
-            System.out.println("File deletion had some error.");
+        Vehicle bike = new Vehicle("Mountain Bike", 533);
+        Vehicle car = new Vehicle("Toyota", 2500);
+
+        try(FileOutputStream fos = new FileOutputStream("vehicle.dat")){
+            try (ObjectOutputStream obj = new ObjectOutputStream(fos)){
+                obj.writeObject(bike);
+                obj.writeObject(car);
+                System.out.println("File operation was successful.");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
     }
+
 }
