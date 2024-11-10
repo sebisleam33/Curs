@@ -13,7 +13,6 @@ public class ReadObject {
                 Vehicle v2 = (Vehicle) obj.readObject();
                 System.out.println(v1);
                 System.out.println(v2);
-                System.out.println(v1);
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
