@@ -14,6 +14,7 @@ public class ReadObject {
                 System.out.println(v1);
                 System.out.println(v2);
                 System.out.println(v1);
+                System.out.println(v2);
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
